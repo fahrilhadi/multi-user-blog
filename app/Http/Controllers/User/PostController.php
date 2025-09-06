@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -13,8 +14,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['user','category','tags'])
-                     ->latest()
-                     ->paginate(2);
+                    ->where('status', 'publish')
+                    ->latest()
+                    ->paginate(2);
 
         return view('welcome', compact('posts'));
     }
@@ -38,7 +40,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $id)
     {
         //
     }
@@ -46,7 +48,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(string $id)
     {
         //
     }
@@ -54,7 +56,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -62,7 +64,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
         //
     }

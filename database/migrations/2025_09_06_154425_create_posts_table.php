@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('title');
             $table->text('content');
-            $table->enum('status', ['draft', 'publish'])->default('draft');
+            $table->enum('status', ['publish', 'pending', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

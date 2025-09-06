@@ -11,12 +11,12 @@
                  Dashboard
               </a>
           @else
-              {{-- Tampilkan Add Post hanya jika user sudah punya minimal 1 post --}}
-              @if($posts->count() > 0)
-                  <a href="{{ route('posts.create') }}" 
-                     class="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition shadow">
-                     + Add Post
-                  </a>
+              {{-- Tampilkan Add Post hanya jika role user dan sudah punya minimal 1 post --}}
+              @if(Auth::check() && Auth::user()->role === 'user' && $posts->count() > 0)
+                <a href="{{ route('posts.create') }}" 
+                class="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition shadow">
+                + Add Post
+                </a>
               @endif
               {{-- Logout --}}
               <form method="POST" action="{{ route('logout') }}">
