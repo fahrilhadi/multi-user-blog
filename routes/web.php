@@ -7,10 +7,9 @@ use App\Http\Controllers\User\DashboardController;
 
 Route::get('/', [PostController::class, 'index']);
 
-Route::resource('posts', PostController::class);
-
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('posts', PostController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

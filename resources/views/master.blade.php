@@ -8,7 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   {{-- Styles --}}
-  @stack('styles')
+  @include('includes.styles')
+  @stack('addon-styles')
 
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col">
