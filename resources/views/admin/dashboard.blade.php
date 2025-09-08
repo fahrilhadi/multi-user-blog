@@ -10,7 +10,7 @@
         {{-- Greeting --}}
         <div class="text-center">
             <h1 class="text-xl font-bold text-gray-900">
-                Welcome back, {{ Auth::user()->name }} 🎉
+                Welcome, {{ Auth::user()->name }}
             </h1>
             <p class="mt-1 text-sm text-gray-600">Here’s an overview of the platform activity.</p>
         </div>

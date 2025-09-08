@@ -100,7 +100,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::with(['category', 'tags'])->findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -154,7 +155,6 @@ class PostController extends Controller
             'title'       => $request->title,
             'content'     => $request->content,
             'category_id' => $category->id,
-            'status'      => 'rejected', // agar di approve admin lagi
         ]);
 
         // update tags

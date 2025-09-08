@@ -10,7 +10,7 @@
         {{-- Greeting --}}
         <div class="text-center">
             <h1 class="text-xl font-bold text-gray-900">
-                Welcome, {{ Auth::user()->name }} 🎉
+                Welcome, {{ Auth::user()->name }}
             </h1>
             <p class="mt-1 text-sm text-gray-600">Here’s a quick overview of your activity.</p>
         </div>
@@ -80,7 +80,7 @@
                                         {{-- Approved/Publish: View --}}
                                         @if($post->status === 'approved' || $post->status === 'publish')
                                             <a href="{{ route('posts.show', $post->id) }}" 
-                                            class="px-2 py-1 rounded-lg border border-gray-300 hover:border-green-600 hover:text-green-600 text-sm transition shadow">
+                                            class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
                                                 View
                                             </a>
                                         @endif
