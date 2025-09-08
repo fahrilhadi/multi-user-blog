@@ -20,4 +20,29 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('totalUsers', 'totalPosts', 'pendingPosts', 'allPosts'));
     }
+
+    public function show(string $id)
+    {
+        $post = Post::with(['category', 'tags', 'user'])->findOrFail($id);
+
+        return view('admin.show', compact('post'));
+    }
+
+    public function approvePost($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->status = 'publish';
+        $post->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Post approved successfully');
+    }
+
+    public function rejectPost($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->status = 'rejected';
+        $post->save();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Post rejected successfully');
+    }
 }

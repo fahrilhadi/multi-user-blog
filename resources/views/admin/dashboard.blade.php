@@ -61,23 +61,27 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 border-b">
-                                    <a href="{{ url('/') }}" 
-                                        class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
-                                        View
-                                    </a>
-                                    {{-- <form action="{{ route('admin.posts.approve', $post->id) }}" method="POST">
-                                        @csrf
-                                        <button class="px-2 py-1 rounded-lg border border-green-500 text-green-600 hover:bg-green-50 text-sm shadow">
-                                            Approve
-                                        </button>
-                                    </form>
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Delete this post?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="px-2 py-1 rounded-lg border border-red-500 text-red-600 hover:bg-red-50 text-sm shadow">
-                                            Delete
-                                        </button>
-                                    </form> --}}
+                                    <div class="flex items-center space-x-2">
+
+                                        {{-- Pending: View --}}
+                                        @if($post->status === 'publish' || $post->status === 'pending')
+                                            <a href="{{ route('admin.posts.show', $post->id) }}" 
+                                            class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
+                                                View
+                                            </a>
+                                        @endif
+
+                                        {{-- Rejected: Delete --}}
+                                        @if($post->status === 'rejected')
+                                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                                <button type="button" onclick="openDeleteModal({{ $post->id }}, '{{ addslashes($post->title) }}')"
+                                                        class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                    </div>
                                 </td>
                             </tr>
                         @empty

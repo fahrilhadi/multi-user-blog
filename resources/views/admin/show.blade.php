@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-    View Post | Multi User Blog App
+    View Post | Admin Panel
 @endsection
 
 @section('main-content')
@@ -26,6 +26,12 @@
                     <span class="px-3 py-1 rounded-full text-xs font-medium border {{ $statusColor }}">
                         {{ ucfirst($post->status) }}
                     </span>
+                </div>
+
+                {{-- Author --}}
+                <div class="mb-4">
+                    <span class="text-sm text-gray-500">Author:</span>
+                    <span class="text-sm font-medium text-gray-800">{{ $post->user->name ?? '-' }}</span>
                 </div>
 
                 {{-- Category --}}
@@ -57,7 +63,25 @@
 
                 {{-- Footer --}}
                 <div class="flex justify-between items-center text-sm text-gray-500">
-                    <p>Published on: {{ $post->created_at->format('M d, Y') }}</p>
+                    <p>Submitted on: {{ $post->created_at->format('M d, Y') }}</p>
+                    
+                    <div class="flex items-center space-x-2">
+                        @if($post->status === 'pending')
+                            <form action="{{ route('admin.posts.approve', $post->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="px-4 py-2 rounded-lg border border-gray-300 hover:border-green-500 hover:text-green-500 text-sm transition shadow">
+                                    Approve
+                                </button>
+                            </form>
+
+                            <form action="{{ route('admin.posts.reject', $post->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="px-4 py-2 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
+                                    Reject
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
 

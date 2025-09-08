@@ -18,7 +18,7 @@
                 + Add Post
                 </a>
               @endif
-              @if (request()->routeIs('posts.create','posts.edit'))
+              @if (request()->routeIs('posts.create','posts.edit','posts.show','admin.posts.show') && ! (request()->routeIs('admin.posts.show') && isset($post) && $post->status === 'pending'))
                 <a href="{{ route('dashboard') }}" 
                   class="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition shadow">
                   Back
