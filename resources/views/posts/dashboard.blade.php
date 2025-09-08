@@ -60,18 +60,43 @@
                                 </td>
                                 <td class="px-4 py-3 border-b">
                                     <div class="flex items-center space-x-2">
-                                        <a href="{{ route('posts.edit', $post->id) }}" 
-                                        class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
-                                        Edit
-                                        </a>
-                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST" 
-                                            onsubmit="return confirm('Are you sure?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
-                                                Delete
-                                            </button>
-                                        </form>
+
+                                        {{-- Pending: Edit & Delete --}}
+                                        @if($post->status === 'pending')
+                                            <a href="{{ route('posts.edit', $post->id) }}" 
+                                            class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
+                                                Edit
+                                            </a>
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" 
+                                                onsubmit="return confirm('Are you sure you want to delete this post?')" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        {{-- Approved/Publish: View --}}
+                                        @if($post->status === 'approved' || $post->status === 'publish')
+                                            <a href="{{ route('posts.show', $post->id) }}" 
+                                            class="px-2 py-1 rounded-lg border border-gray-300 hover:border-green-600 hover:text-green-600 text-sm transition shadow">
+                                                View
+                                            </a>
+                                        @endif
+
+                                        {{-- Rejected: Delete --}}
+                                        @if($post->status === 'rejected')
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" 
+                                                onsubmit="return confirm('Are you sure you want to delete this rejected post?')" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        @endif
+
                                     </div>
                                 </td>
                             </tr>

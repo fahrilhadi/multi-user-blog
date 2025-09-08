@@ -108,7 +108,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -116,7 +120,56 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'title'    => 'required|string|max:255',
+            'content'  => 'required|string',
+            'category' => 'required|string|max:100',
+            'tags'     => 'nullable|array',
+            'tags.*'   => 'nullable|string|max:50'
+        ], [
+            'title.required'    => 'Title is required',
+            'content.required'  => 'Content is required',
+            'category.required' => 'Category is required',
+        ]);
+
+        if (empty($request->title) && empty($request->content)) {
+            return back()
+                ->withErrors(['all' => 'Title, Content & Category are required'])
+                ->withInput();
+        }
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // kategori
+        $category = Category::firstOrCreate(['name' => $request->category]);
+
+        // update post
+        $post->update([
+            'title'       => $request->title,
+            'content'     => $request->content,
+            'category_id' => $category->id,
+            'status'      => 'rejected', // agar di approve admin lagi
+        ]);
+
+        // update tags
+        if ($request->filled('tags')) {
+            $tagIds = [];
+            foreach ($request->tags as $tagName) {
+                $tag = Tag::firstOrCreate(['name' => trim($tagName)]);
+                $tagIds[] = $tag->id;
+            }
+            $post->tags()->sync($tagIds);
+        } else {
+            $post->tags()->detach();
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Post updated successfully');
     }
 
     /**

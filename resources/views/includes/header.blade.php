@@ -18,7 +18,7 @@
                 + Add Post
                 </a>
               @endif
-              @if (request()->routeIs('posts.create'))
+              @if (request()->routeIs('posts.create','posts.edit'))
                 <a href="{{ route('dashboard') }}" 
                   class="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition shadow">
                   Back
