@@ -177,6 +177,14 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::with('tags')->findOrFail($id);
+
+        // Hapus relasi ke tags di pivot table
+        $post->tags()->detach();
+
+        // Hapus post
+        $post->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Post deleted successfully');
     }
 }
