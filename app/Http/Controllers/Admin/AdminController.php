@@ -45,4 +45,17 @@ class AdminController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Post rejected successfully');
     }
+
+    public function destroy(string $id)
+    {
+        $post = Post::with('tags')->findOrFail($id);
+
+        // hapus relasi tags (pivot)
+        $post->tags()->detach();
+
+        // hapus post
+        $post->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Post deleted successfully');
+    }
 }
