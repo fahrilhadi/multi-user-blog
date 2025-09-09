@@ -1,61 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Multi User Blog App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An **intermediate-level blog application** built with **Laravel 12**, **Laravel Breeze**, and **TailwindCSS**. This project goes beyond basic authentication by implementing a **multi-user system** with role-based access (user & admin), a full **CRUD post management**, **post status (publish, pending & rejected)**, and an **admin dashboard**.
 
-## About Laravel
+## Screenshots
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Index Page (Empty State — No Posts Yet)**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/28cc836a-c66c-46fe-b2b5-7d986e244bfd" /><br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Index Page (With Posts)**
 
-## Learning Laravel
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/3fe67091-e489-4a83-a2a2-6794f949d9e2" /><br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Post Detail (Read More)**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/d3377772-6922-436c-ad1b-bf220f7d5db3" /><br>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Login Page**
 
-## Laravel Sponsors
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/578a23d3-edfc-47f5-af33-866b0a86244c" /><br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Register Page**  
 
-### Premium Partners
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/b2763bde-3a73-461c-8091-eec9b60b5497" /><br>
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Admin Dashboard Page (Empty State — No Posts Yet)**  
 
-## Contributing
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/723a724e-ba4e-456b-97da-96d710a03a35" /><br> 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Admin Dashboard Page (With Posts)**  
 
-## Code of Conduct
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/5dadbdd9-3994-4b08-8d03-60754ba9b2a5" /><br> 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Admin View Post (Approve or Reject)**  
 
-## Security Vulnerabilities
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/771801f6-0504-40e8-a499-8f7b4c76a3cf" /><br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Admin View Approved Posts**  
 
-## License
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/2a89a6cf-13ba-4a0f-9046-d47de1069a87" /><br> 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Admin Delete Rejected Posts**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/a87b68ae-37fa-40b8-a939-a7497a443431" /><br> 
+
+**User Dashboard Page (Empty State — No Posts Yet)**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/8aced740-992f-48cf-b77f-bd7ea743d54c" /><br> 
+
+**User Dashboard Page (With Posts)**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/67f73a03-954e-4bf7-ad26-f3193c374a3c" /><br> 
+
+**User Create Post**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/9c085e0d-0d7c-4d72-b6db-ab9ceaee70ea" /><br> 
+
+**User Edit Post**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/df9ccad5-de55-44d9-84ab-d25dc74a5e85" /><br> 
+
+**User View Post (After Approval)**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/a8e7ed8c-07ae-47de-9ec9-79899a3ff535" /><br> 
+
+**User Delete Post**  
+
+<img width="1280" height="712" alt="image" src="https://github.com/user-attachments/assets/cc07f669-e390-4c7b-95d6-c8a62993a044" /><br> 
+
+## Tech Stack
+
+- **Backend:** Laravel 12  
+- **Frontend:** Blade Templates + TailwindCSS  
+- **Database:** MySQL 
+- **Version Control:** GitHub  
+
+## Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/fahrilhadi/multi-user-blog.git
+cd multi-user-blog
+
+# Install dependencies
+composer install
+npm install
+npm run dev
+
+# Setup environment
+cp .env.example .env
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
+
+# Serve application
+php artisan serve
