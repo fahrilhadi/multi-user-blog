@@ -22,7 +22,6 @@
     .select2-container--default .select2-selection--single:focus,
     .select2-container--default .select2-selection--multiple:focus {
         border-color: #000 !important;                /* focus:border-black */
-        box-shadow: 0 0 0 3px rgba(0,0,0,0.08) !important; /* subtle black ring */
         outline: none !important;
     }
 

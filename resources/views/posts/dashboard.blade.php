@@ -81,6 +81,12 @@
                                             class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
                                                 View
                                             </a>
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                                <button type="button" onclick="openDeleteModal({{ $post->id }}, '{{ addslashes($post->title) }}')"
+                                                        class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         @endif
 
                                         {{-- Rejected: Delete --}}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -149,9 +150,19 @@ class PostController extends Controller
         // kategori
         $category = Category::firstOrCreate(['name' => $request->category]);
 
+        // generate slug baru berdasarkan title
+        $slug = Str::slug($request->title);
+
+        // pastikan slug unik
+        $count = Post::where('slug', 'like', "{$slug}%")->where('id', '!=', $post->id)->count();
+        if ($count > 0) {
+            $slug .= '-' . ($count + 1);
+        }
+
         // update post
         $post->update([
             'title'       => $request->title,
+            'slug'        => $slug, // <-- update slug
             'content'     => $request->content,
             'category_id' => $category->id,
         ]);

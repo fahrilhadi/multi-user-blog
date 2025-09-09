@@ -54,17 +54,21 @@ class RegisteredUserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        // Cek apakah email admin
+        $role = $request->email === 'admin@example.com' ? 'admin' : 'user';
         
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $role, // pastikan kolom `role` ada di tabel users
         ]);
 
         event(new Registered($user));
 
         return redirect()
             ->route('login')
-            ->with(['success' => 'Registration successful']);
+            ->with(['success' => 'Registration successfully']);
     }
 }

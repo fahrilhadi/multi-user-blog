@@ -6,12 +6,13 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\DashboardController;
 
 Route::get('/', [PostController::class, 'index']);
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('posts', PostController::class)->except(['index','show']);
 });
+
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
