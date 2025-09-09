@@ -65,7 +65,7 @@
 
                                         {{-- Pending: View --}}
                                         @if($post->status === 'publish' || $post->status === 'pending')
-                                            <a href="{{ route('admin.posts.show', $post->id) }}" 
+                                            <a href="{{ route('admin.posts.show', $post) }}" 
                                             class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
                                                 View
                                             </a>
@@ -73,7 +73,7 @@
 
                                         {{-- Rejected: Delete --}}
                                         @if($post->status === 'rejected')
-                                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
                                                 <button type="button" onclick="openDeleteModal({{ $post->id }}, '{{ addslashes($post->title) }}')"
                                                         class="px-2 py-1 rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-500 text-sm transition shadow">
                                                     Delete

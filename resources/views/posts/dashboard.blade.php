@@ -63,7 +63,7 @@
 
                                         {{-- Pending: Edit & Delete --}}
                                         @if($post->status === 'pending')
-                                            <a href="{{ route('posts.edit', $post->id) }}" 
+                                            <a href="{{ route('posts.edit', $post) }}" 
                                             class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
                                                 Edit
                                             </a>
@@ -77,7 +77,7 @@
 
                                         {{-- Approved/Publish: View --}}
                                         @if($post->status === 'approved' || $post->status === 'publish')
-                                            <a href="{{ route('posts.show', $post->id) }}" 
+                                            <a href="{{ route('posts.show', $post) }}" 
                                             class="px-2 py-1 rounded-lg border border-gray-300 hover:border-black text-sm transition shadow">
                                                 View
                                             </a>

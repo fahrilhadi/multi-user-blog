@@ -15,17 +15,26 @@
                     <h1 class="text-lg font-bold text-gray-900 mb-2">
                         {{ $post->title }}
                     </h1>
-                    @php
-                        $statusColor = match($post->status) {
-                            'publish' => 'bg-green-100 text-green-700 border-green-300',
-                            'pending' => 'bg-yellow-100 text-yellow-700 border-yellow-300',
-                            'rejected' => 'bg-red-100 text-red-700 border-red-300',
-                            default => 'bg-gray-100 text-gray-700 border-gray-300'
-                        };
-                    @endphp
-                    <span class="px-3 py-1 rounded-full text-xs font-medium border {{ $statusColor }}">
-                        {{ ucfirst($post->status) }}
-                    </span>
+                    @auth
+                        @php
+                            $statusColor = match($post->status) {
+                                'publish' => 'bg-green-100 text-green-700 border-green-300',
+                                'pending' => 'bg-yellow-100 text-yellow-700 border-yellow-300',
+                                'rejected' => 'bg-red-100 text-red-700 border-red-300',
+                                default => 'bg-gray-100 text-gray-700 border-gray-300'
+                            };
+                        @endphp
+
+                        <span class="px-3 py-1 rounded-full text-xs font-medium border {{ $statusColor }}">
+                            {{ ucfirst($post->status) }}
+                        </span>
+                    @endauth
+                </div>
+
+                {{-- Author --}}
+                <div class="mb-4">
+                    <span class="text-sm text-gray-500">Author:</span>
+                    <span class="text-sm font-medium text-gray-800">{{ $post->user->name ?? '-' }}</span>
                 </div>
 
                 {{-- Category --}}
@@ -58,6 +67,12 @@
                 {{-- Footer --}}
                 <div class="flex justify-between items-center text-sm text-gray-500">
                     <p>Published on: {{ $post->created_at->format('M d, Y') }}</p>
+                    @guest
+                        <a href="{{ url('/') }}" 
+                            class="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition shadow">
+                                Back
+                        </a>
+                    @endguest
                 </div>
             </div>
 

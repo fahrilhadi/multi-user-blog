@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->enum('status', ['publish', 'pending', 'rejected'])->default('pending');
             $table->timestamps();

@@ -21,10 +21,9 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('totalUsers', 'totalPosts', 'pendingPosts', 'allPosts'));
     }
 
-    public function show(string $id)
+    public function show(Post $post)
     {
-        $post = Post::with(['category', 'tags', 'user'])->findOrFail($id);
-
+        $post->load(['category', 'tags', 'user']); 
         return view('admin.show', compact('post'));
     }
 

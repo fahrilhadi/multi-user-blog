@@ -98,18 +98,17 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        $post = Post::with(['category', 'tags'])->findOrFail($id);
+        $post->load(['category', 'tags',]); 
         return view('posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
         $categories = Category::all();
         $tags = Tag::all();
 
